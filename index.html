@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ryby – od rybníka k oceánu</title>
+<style>
+  :root{--bg:#10151e;--panel:#1a2230;--line:#2c3a50;--acc:#3fb8d8;--ink:#eef3fa;--muted:#a9b6c8}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(ellipse at top,#1e2a3e,var(--bg) 60%);color:var(--ink);font-family:'Segoe UI',Arial,sans-serif;line-height:1.5}
+  .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+  header{text-align:center;margin-bottom:16px}
+  h1{font-size:clamp(28px,6vw,54px);margin:4px 0 0;color:var(--acc);letter-spacing:1px}
+  .sub{color:var(--muted);font-size:clamp(15px,2.4vw,19px)}
+  .icons{font-size:clamp(26px,5vw,40px);letter-spacing:8px}
+  .player{background:#000;border:3px solid var(--acc);border-radius:12px;overflow:hidden;box-shadow:0 10px 40px #000a}
+  video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+  .tip{color:var(--muted);text-align:center;margin:8px 0 0;font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .box{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+  .box h2{margin:0 0 10px;color:var(--acc);font-size:22px}
+  .full{grid-column:1/-1}
+  .chap{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:17px;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--line);padding:8px 4px;cursor:pointer}
+  .chap:hover{background:#243048}
+  .chap.now{background:#2c3c58;color:#fff}
+  .chap b{color:var(--acc);min-width:56px;font-variant-numeric:tabular-nums}
+  .skup{margin:10px 0 4px;color:var(--acc);font-weight:800}
+  .druh{font-size:15px;padding:3px 0;border-bottom:1px solid var(--line)}
+  .druh b{color:#fff}
+  .druh span{color:var(--muted)}
+  footer{text-align:center;color:var(--muted);margin-top:28px;font-size:13px}
+  details summary{cursor:pointer;color:var(--acc);font-weight:bold}
+  details ul{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="icons">🐟🦈🌊</div>
+    <h1>RYBY</h1>
+    <div class="sub">stavba, soustavy, smysly, rozmnožování, migrace · kaprovití, lososovití, dravci, mořské ryby, latimérie, bahníci · kvíz + poznávačka 24 ryb · 22 minut</div>
+  </header>
+
+  <div class="player"><video id="v" src="video/ryby.mp4" poster="miniatura.jpg" controls preload="metadata" playsinline></video></div>
+  <p class="tip">📱 Na mobilu otoč telefon na šířku a dej celou obrazovku ⛶ · V poznávačce zastav video a zkus si odpovědět dřív, než uběhne 5 vteřin!</p>
+
+  <div class="grid">
+    <div class="box ">
+      <h2>🎬 Kapitoly (klikni a video skočí)</h2>
+      <div id="chapters"></div>
+    </div>
+    <div class="box">
+      <h2>📋 Tahák – všechny druhy</h2>
+      <div class="skup">jeseteři</div>
+      <div class="druh"><b>Jeseter malý</b> <span>– Dlouhý rypec a lysé tělo s řadami kostěných štítků. Chrupavčitá kostra.</span></div>
+      <div class="druh"><b>Jeseter velký</b> <span>– Obří jeseter, měří i několik metrů. Z jeho jiker je kaviár.</span></div>
+      <div class="skup">kaprovití</div>
+      <div class="druh"><b>Kapr obecný</b> <span>– Vousky u tlamy a velké šupiny. Vánoční ryba z rybníka.</span></div>
+      <div class="druh"><b>Karas obecný</b> <span>– Vysoké tělo bez vousků. Vydrží i v bahnité vodě.</span></div>
+      <div class="druh"><b>Lín obecný</b> <span>– Drobnější šupiny, slizký, zelenozlatý, červené oči.</span></div>
+      <div class="druh"><b>Parma obecná</b> <span>– Protáhlé tělo a čtyři vousky. Žije u dna řek.</span></div>
+      <div class="skup">lososovití</div>
+      <div class="druh"><b>Pstruh obecný potoční</b> <span>– Červené tečky se světlým lemem a tuková ploutvička. Horské potoky.</span></div>
+      <div class="druh"><b>Losos obecný</b> <span>– Velký stříbrný. Táhne z moře do řek proti proudu.</span></div>
+      <div class="druh"><b>Lipan podhorní</b> <span>– Obrovská barevná hřbetní ploutev jako prapor.</span></div>
+      <div class="skup">štiky</div>
+      <div class="druh"><b>Štika obecná</b> <span>– Válcovité tělo a dlouhá tlama. Dravec, číhá v rákosí.</span></div>
+      <div class="skup">okounovití</div>
+      <div class="druh"><b>Okoun říční</b> <span>– Tmavé pruhy, červené ploutve, ostré paprsky v hřbetní ploutvi.</span></div>
+      <div class="druh"><b>Candát obecný</b> <span>– Protáhlé tělo, ostré zuby a dvoudílná hřbetní ploutev. Dravec.</span></div>
+      <div class="skup">sumci</div>
+      <div class="druh"><b>Sumec obecný</b> <span>– Bez šupin, dlouhé hmatové vousy. Největší sladkovodní ryba u nás.</span></div>
+      <div class="skup">úhořovití</div>
+      <div class="druh"><b>Úhoř říční</b> <span>– Hadovité tělo, ocasní lem a hladká slizká kůže.</span></div>
+      <div class="skup">bezostní</div>
+      <div class="druh"><b>Sleď obecný</b> <span>– Stříbrný, žije v obrovských hejnech v moři.</span></div>
+      <div class="druh"><b>Sardinka obecná</b> <span>– Malá stříbrná rybka v hejnech, živí se planktonem.</span></div>
+      <div class="druh"><b>Šprot obecný</b> <span>– Drobná rybka ze severních moří, plave v hejnech.</span></div>
+      <div class="druh"><b>Sardel ančovička</b> <span>– Malá rybka s velkou tlamou, plave v hejnech.</span></div>
+      <div class="skup">mořské druhy</div>
+      <div class="druh"><b>Treska obecná</b> <span>– Dravá, vousek na bradě. Maso, játra a rybí tuk.</span></div>
+      <div class="druh"><b>Tuňák obecný</b> <span>– Velký rychlý dravec s chutným masem.</span></div>
+      <div class="druh"><b>Makrela obecná</b> <span>– Zelenomodré vlnky na hřbetě, tučné maso.</span></div>
+      <div class="skup">lalokoploutví</div>
+      <div class="druh"><b>Latimérie podivná</b> <span>– Svalnaté ploutve jako nožičky. Hlubokomořská živoucí fosilie.</span></div>
+      <div class="skup">dvojdyšní</div>
+      <div class="druh"><b>Bahník australský</b> <span>– Protáhlé tělo, žábry i plicní vak. Žije v Austrálii.</span></div>
+      <div class="druh"><b>Bahník americký</b> <span>– Úzké párové ploutve. V suchu se zahrabe do bahna a dýchá plicními vaky.</span></div>
+    </div>
+
+    <div class="box full" id="kredbox">
+      <details>
+        <summary>📸 Odkud jsou fotky (volné licence)</summary>
+        <ul id="kredity"></ul>
+      </details>
+    </div>
+  </div>
+  <footer>Video vyrobil 🔱 NEPTUN (s pomocí AI Claude). Kresby, hudba i hlas jsou vytvořené počítačem.</footer>
+</div>
+
+<script>
+const CHAPTERS = [[0, "Úvod – co se naučíme"], [62, "1. Paprskoploutvé ryby (jak je ryba postavená)"], [131, "2. Uvnitř ryby (soustavy)"], [191, "3. Smysly ryb (šestý smysl)"], [231, "4. Rozmnožování (tisíce jiker)"], [287, "5. Migrace a význam (svatební cesty)"], [369, "6. Rybník (kaprovití)"], [421, "7. Horský potok (lososovití)"], [467, "8. Řeka (dravci a pravěcí jeseteři)"], [564, "9. Moře (hejna a mořští obři)"], [623, "10. Svaloploutvé ryby (živoucí fosilie)"], [730, "11. Kvíz (11 otázek na test)"], [910, "12. Poznávačka (24 ryb zamíchaně)"]];
+const KREDITY = ["Lepidosiren paradoxa 118537122.jpg - Vincent A. Vos (CC BY 4.0)", "Neoceratodus forsteri Nagoya2.jpg - タウナギ (CC0)", "Swamp soil tilling pattern.jpg - Kambai Akau (CC BY-SA 4.0)", "Great White Shark (Carcharodon carcharias) (32872319266).jpg - Bernard DUPONT from FRANCE (CC BY-SA 2.0)", "European Robin. : Erithacus rubecula - pete. #hwcp (CC BY 2.0)", "Banco de gran barracudas (Sphyraena barracuda), parque nacional Ras Muhammad, Egipto, 2022-03-27, DD 115.jpg - Diego Delso (CC BY-SA 4.0)", "Porites porites porites (clubbed finger coral) (San Salvador Island, Bahamas) 5 (16066417536).jpg - James St. John (CC BY 2.0)", "Ilsenburg, Ilsetal, Ilsefälle -- 2017 -- 0143.jpg - Dietmar Rabich (CC BY-SA 4.0)", "Acipenser ruthenus Prague Vltava 1.jpg - Karelj (Public domain)", "Lacerta agilis male 2011 G2.jpg - George Chernilevsky (Public domain)", "Salmon caviar on a spoon.jpg - TypeZero (CC BY-SA 4.0)", "Cyprinus carpio 2021 G2.jpg - George Chernilevsky (CC BY-SA 4.0)", "Sphyrna mokarran head.jpg - Dave M from Atlanta (CC BY 2.0)", "Branchiostoma lanceolatum (YPM IZ 093892).jpeg - Daniel J. Drew (CC0)", "Branchiostoma virginiae.jpg - Nathan T. Jones (CC BY 4.0)", "Common carp x-ray.jpg - Florian Elias Rieser (CC BY-SA 4.0)", "Latimeria Chalumnae - Coelacanth - NHMW.jpg - Alberto Fernandez Fernandez (CC BY-SA 3.0)", "Alcedo atthis - Riserve naturali e aree contigue della fascia fluviale del Po.jpg - Luca Casale (CC BY-SA 4.0)", "Tinca tinca Prague Vltava 2.jpg - Karelj (Public domain)", "Grayling Underwater (Thymallus Thymallus).jpg - Liquid Art (CC BY-SA 4.0)", "Rød ræv (Vulpes vulpes) - Malene Thyssen (CC BY 2.5)", "Jumping Salmon, Brooks Falls, Katmai National Park.jpg - Christoph Strässler (CC BY-SA 2.0)", "Scyliorhinus canicula - Hans Hillewaert (CC BY-SA 4.0)", "Atlantic mackerel (Scomber scombrus).jpg - Petar Milošević (CC BY-SA 4.0)", "Giant Manta AdF.jpg - Arturo de Frias Marques (CC BY-SA 4.0)", "Petromyzon marinus.001 - Aquarium Finisterrae - Fernando Losada Rodríguez (CC BY-SA 4.0)", "Lampetra planeri 76209247.jpg - Julien Renoult (CC BY 4.0)", "Jõesilmud2.jpg - Tiit Hunt (CC BY-SA 3.0)", "Petromyzon marinus 111077283.jpg - Ian Manning (CC BY 4.0)", "Tiburón azul (Prionace glauca), canal Fayal-Pico, islas Azores, Portugal, 2020-07-27, DD 14.jpg - Diego Delso (CC BY-SA 4.0)", "Envy (219520561).jpeg - Tilonaut (CC BY 3.0)", "Waves at La Corniche.jpg - Christian Ferrer (CC BY 4.0)", "Leviathan - Part 1 - laszlo-photo (CC BY 2.0)", "Perche commune perca fluviatilis Alfort.jpg - Jebulon (CC0)", "Perche commune perca fluviatilis Alfort.jpg - Jebulon (CC0)", "Torpille marbrée (Torpedo marmorata) (Ifremer 00561-67318).jpg - Marie-Noelle De Casamajor (CC BY 4.0)", "Rainbow Trout Fry (51309699084).jpg - USFWS Mountain Prairie (Public domain)", "Salmo trutta fario.jpg - Robermix (CC0)", "Salmo trutta fario.jpg - Robermix (CC0)", "Vltava river in Prague.jpg - Dmitry A. Mottl (CC BY-SA 4.0)", "Fishing Boat Net Ashtamudi Lake Kerala Mar22 A7C 01495.jpg - Diego Delso (CC BY-SA 4.0)", "Bonda, celkový pohled.jpg - Juandev (CC BY-SA 3.0)", "Salpa maxima 78696567.jpg - Chris Taklis (CC BY 4.0)", "Esox lucius 2021 G1.jpg - George Chernilevsky (CC BY-SA 4.0)", "Silurus glanis from the Dnieper River.jpg - Nikkolo at Ukrainian Wikipedia (CC BY-SA 1.0)", "Silurus glanis from the Dnieper River.jpg - Nikkolo at Ukrainian Wikipedia (CC BY-SA 1.0)", "Musselodling med Ciona2 - Havspappan (CC BY 2.0)", "Common Carp (Cyprinus carpio) Mirror Variety.jpg - USFWS Mountain Prairie (Public domain)", "Sockeye salmon on spawning grounds redd sockeye redd.jpg - U.S. Fish and Wildlife Service (Public domain)", "Atlantic Cod, Atlantischer Kabeljau (Gadus morhua).jpg - Wilhelm Thomas Fiege (CC BY-SA 4.0)", "Fish market in Nouakchott - Mauritania.jpg - Uzabiaga (CC BY-SA 4.0)", "Dasyatis pastinaca 24933880.jpg - Chris Taklis (CC BY 4.0)", "Banc de thons albacores (Thunnus albacares) (Ifremer 00568-68027 - 25201).jpg - Marc Taquet (CC BY 4.0)", "Bluefin-big.jpg - Unknown authorUnknown author (Public domain)", "Anguille d\u0027Europe (Anguilla anguilla) (Ifremer 00673-78548).jpg - Damien Delaunay (CC BY 4.0)", "Coral Reef - NOAA\u0027s National Ocean Service (Public domain)", "Cetorhinus maximus 2.jpg - rossbeane (CC BY-SA 2.0)", "European Common Frog Rana temporaria - Richard Bartz, Munich aka Makro Freak Image:MFB.jpg (CC BY-SA 2.5)", "Carassius gibelio male head 2009 G1.jpg - George Chernilevsky (Public domain)", "White shark teeth closeup Florida.jpg - NOAA Fisheries/Michelle Passeroti (Public domain)", "Cyprinidae Carassius carassius 1.jpg - NasserHalaweh (CC BY-SA 4.0)", "Atlantic salmon fish.jpg - Timothy Knepp, U.S. Fish and Wildlife Service (Public domain)", "Sander lucioperca (Czech Republic) 07.jpg - Pohled 111 (CC BY-SA 4.0)", "Clupea harengus alive.jpg - asiafuoco (CC BY 4.0)", "Sardina pilchardus Italy.jpg - margherita_bg (CC0)", "Sprattus sprattus England.jpg - andyjordan (CC BY 4.0)", "Barbus barbus img 33565.jpg - Pmau (CC BY-SA 4.0)", "Anchois commun (Engraulis encrasicolus) (Ifremer 00402-51364).jpg - Florence Sanchez (CC BY 4.0)", "Білуга (Huso huso) (cropped).jpg - Максим Яковлєв (CC BY-SA 4.0)", "Anguille d\u0027Europe (Anguilla anguilla) (Ifremer 00673-78548).jpg - Damien Delaunay (CC BY 4.0)"];
+const v = document.getElementById('v');
+const zvukZap = () => { v.muted = false; v.defaultMuted = false; v.removeAttribute('muted'); if (v.volume < 0.05) v.volume = 1; };
+zvukZap(); v.addEventListener('loadedmetadata', zvukZap); v.addEventListener('play', zvukZap);
+const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+const box = document.getElementById('chapters');
+CHAPTERS.forEach(([t, name]) => {
+  const b = document.createElement('button'); b.className = 'chap'; b.dataset.t = t;
+  b.innerHTML = '<b>' + fmt(t) + '</b><span></span>'; b.children[1].textContent = name;
+  b.onclick = () => { const go = () => { zvukZap(); v.currentTime = t; v.play().catch(() => {}); }; if (v.readyState >= 1) go(); else { v.addEventListener('loadedmetadata', go, { once: true }); v.load(); } v.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+  box.appendChild(b);
+});
+v.addEventListener('timeupdate', () => { let cur = null; document.querySelectorAll('.chap').forEach(b => { b.classList.remove('now'); if (+b.dataset.t <= v.currentTime) cur = b; }); if (cur) cur.classList.add('now'); });
+if (!KREDITY.length) document.getElementById('kredbox').remove();
+else { const ul = document.getElementById('kredity'); KREDITY.forEach(k => { const li = document.createElement('li'); li.textContent = k; ul.appendChild(li); }); }
+</script>
+<script src="/videa/prehravac.js"></script>
+</body>
+</html>
